@@ -1703,8 +1703,17 @@ layer {
   top: "pool15"
   pooling_param {
     pool: AVE
-    kernel_size: 7
+    kernel_size: 3
     global_pooling: false
+  }
+}
+layer {
+  name: "pool15/drop"
+  type: "Dropout"
+  bottom: "pool15"
+  top: "pool15"
+  dropout_param {
+    dropout_ratio: 0.4
   }
 }
 layer {

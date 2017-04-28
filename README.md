@@ -1,9 +1,7 @@
 # caffe-mobilenet
 Google MobileNet Implementation using nvidia-caffe and digits
 
-
 ### TODO
-- [ ] Add Custom Depthwise Convolution
 - [ ] Give top-1 error on imagenet
 
 ### Library Versions
@@ -14,7 +12,6 @@ Google MobileNet Implementation using nvidia-caffe and digits
 ### References
 
 1) [Google MobileNet Paper](https://arxiv.org/pdf/1704.04861.pdf)
-
 
 ### Licence
 
