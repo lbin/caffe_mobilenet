@@ -4,6 +4,12 @@ Google MobileNet Implementation using nvidia-caffe and digits
 ### TODO
 - [ ] Give top-1 error on imagenet
 
+### Accuracy on ImageNet-2012 Validation Set
+
+| Model | Width Multiplier |Preprocessing  | Accuracy-Top1|Accuracy-Top5 |
+|--------|:---------:|:------:|:------:|:------:|
+| MobileNet |1.0| Same as Inception | 66.30% | 86.62% |
+
 ### Library Versions
 
 - nvidia-caffe 0.15
