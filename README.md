@@ -8,7 +8,7 @@ Google MobileNet Implementation using nvidia-caffe and digits
 
 | Model | Width Multiplier |Preprocessing  | Accuracy-Top1|Accuracy-Top5 |
 |--------|:---------:|:------:|:------:|:------:|
-| MobileNet |1.0| Same as Inception | 66.30% | 86.62% |
+| MobileNet |1.0| Same as Inception | 66.80% | 87.01% |
 
 ### Library Versions
 
