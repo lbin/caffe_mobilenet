@@ -9,10 +9,10 @@ layer {
   transform_param {
     mirror: true
     crop_size: 224
-    mean_file: "path/to/mean.binaryproto"
+    mean_file: "/path/to/mean.binaryproto"
   }
   data_param {
-    source: "path/to/train_db"
+    source: "/path/to/train_db"
     batch_size: 144
     backend: LMDB
   }
@@ -28,10 +28,10 @@ layer {
   transform_param {
     mirror: false
     crop_size: 224
-    mean_file: "path/to/mean.binaryproto"
+    mean_file: "/path/to/mean.binaryproto"
   }
   data_param {
-    source: "path/to/val_db"
+    source: "/path/to/val_db"
     batch_size: 144
     backend: LMDB
   }
@@ -1703,8 +1703,7 @@ layer {
   top: "pool15"
   pooling_param {
     pool: AVE
-    kernel_size: 3
-    global_pooling: false
+    global_pooling: true
   }
 }
 layer {
@@ -1717,26 +1716,34 @@ layer {
   }
 }
 layer {
-  name: "fc1"
-  type: "InnerProduct"
+  name: "fc"
+  type: "Convolution"
   bottom: "pool15"
-  top: "fc1"
+  top: "fc"
   param {
     lr_mult: 1.0
     decay_mult: 1.0
   }
-  inner_product_param {
+  param {
+    lr_mult: 2.0
+    decay_mult: 0.0
+  }
+  convolution_param {
     num_output: 1000
-    bias_term: false
+    kernel_size: 1
     weight_filler {
       type: "msra"
+    }
+    bias_filler {
+      type: "constant"
+      value: 0.0
     }
   }
 }
 layer {
   name: "loss3/loss"
   type: "SoftmaxWithLoss"
-  bottom: "fc1"
+  bottom: "fc"
   bottom: "label"
   top: "loss"
   loss_weight: 1.0
@@ -1744,7 +1751,7 @@ layer {
 layer {
   name: "loss3/top-1"
   type: "Accuracy"
-  bottom: "fc1"
+  bottom: "fc"
   bottom: "label"
   top: "accuracy"
   include {
@@ -1754,7 +1761,7 @@ layer {
 layer {
   name: "loss3/top-5"
   type: "Accuracy"
-  bottom: "fc1"
+  bottom: "fc"
   bottom: "label"
   top: "accuracy-top5"
   include {
